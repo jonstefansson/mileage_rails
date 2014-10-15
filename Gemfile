@@ -38,7 +38,11 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+
 group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'quiet_assets'
 end
