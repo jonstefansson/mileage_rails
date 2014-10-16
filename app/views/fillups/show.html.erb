@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Odometer:</strong>
+  <%= @fillup.odometer %>
+</p>
+
+<p>
+  <strong>Fill date:</strong>
+  <%= @fillup.fill_date %>
+</p>
+
+<p>
+  <strong>Gallons:</strong>
+  <%= @fillup.gallons %>
+</p>
+
+<%= link_to 'Edit', edit_fillup_path(@fillup) %> |
+<%= link_to 'Back', fillups_path %>

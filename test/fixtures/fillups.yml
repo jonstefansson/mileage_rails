@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  odometer: 1
+  fill_date: 2014-10-15
+  gallons: 9.99
+
+two:
+  odometer: 1
+  fill_date: 2014-10-15
+  gallons: 9.99

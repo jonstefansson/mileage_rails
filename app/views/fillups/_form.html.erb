@@ -1,0 +1,33 @@
+<%= form_for(@fillup) do |f| %>
+  <% if @fillup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fillup.errors.count, "error") %> prohibited this fillup from being saved:</h2>
+
+      <ul>
+      <% @fillup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :vehicle %><br>
+    <%= f.collection_select :vehicle_id, @vehicles, :id, :name, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :odometer %><br>
+    <%= f.number_field :odometer %>
+  </div>
+  <div class="field">
+    <%= f.label :fill_date %><br>
+    <%= f.date_select :fill_date %>
+  </div>
+  <div class="field">
+    <%= f.label :gallons %><br>
+    <%= f.text_field :gallons %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
