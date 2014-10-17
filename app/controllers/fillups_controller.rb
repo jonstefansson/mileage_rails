@@ -1,10 +1,14 @@
 class FillupsController < ApplicationController
   before_action :set_fillup, only: [:show, :edit, :update, :destroy]
 
-  # GET /fillups
-  # GET /fillups.json
-  def index
-    @fillups = Fillup.all
+  helper FillupsHelper
+
+  # GET /vehicles/1/fillups
+  # GET /vehicles/1/fillups.json
+  def index()
+    limit = params['limit'] ? params['limit'].to_i : 10
+    @fillups = Fillup.where('vehicle_id = ?', params['vehicle_id']).order('odometer DESC').limit(limit)
+    calculate_mpgs(@fillups)
   end
 
   # GET /fillups/1
@@ -73,4 +77,14 @@ class FillupsController < ApplicationController
     def fillup_params
       params.require(:fillup).permit(:vehicle_id, :odometer, :fill_date, :gallons)
     end
+
+  private
+
+  def calculate_mpgs(fillups)
+    fillups.inject() do |last_fillup, f|
+      last_fillup.calculate_mpg(f) if last_fillup
+      f
+    end
+  end
+
 end

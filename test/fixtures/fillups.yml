@@ -1,11 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  odometer: 1
-  fill_date: 2014-10-15
-  gallons: 9.99
+acura_one:
+  odometer: 100000
+  vehicle_id: 1
+  fill_date: 2014-7-15
+  gallons: 12.981
 
-two:
-  odometer: 1
+acura_two:
+  odometer: 100300
+  vehicle_id: 1
+  fill_date: 2014-8-15
+  gallons: 13.755
+
+acura_three:
+  odometer: 100600
+  vehicle_id: 1
+  fill_date: 2014-9-15
+  gallons: 14.133
+
+acura_four:
+  odometer: 100900
+  vehicle_id: 1
   fill_date: 2014-10-15
-  gallons: 9.99
+  gallons: 11.999

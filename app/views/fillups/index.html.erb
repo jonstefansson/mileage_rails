@@ -7,6 +7,7 @@
       <th>Odometer</th>
       <th>Fill date</th>
       <th>Gallons</th>
+      <th>MPG</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= fillup.odometer %></td>
         <td><%= fillup.fill_date %></td>
         <td><%= fillup.gallons %></td>
+        <td><%= number_with_precision(fillup.mpg) if fillup.mpg %></td>
         <td><%= link_to 'Show', fillup %></td>
         <td><%= link_to 'Edit', edit_fillup_path(fillup) %></td>
         <td><%= link_to 'Destroy', fillup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,3 +31,4 @@
 <br>
 
 <%= link_to 'New Fillup', new_fillup_path %>
+<%= link_to 'Vehicles', vehicles_path %>
