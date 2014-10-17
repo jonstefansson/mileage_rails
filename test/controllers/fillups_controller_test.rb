@@ -15,7 +15,7 @@ class FillupsControllerTest < ActionController::TestCase
     assert_nil fillups[3].mpg
     fillups.each_with_index do |f, index|
       if index < 3
-        assert f.mpg > BigDecimal.new(21.0, 2), "mpg value is wrong"
+        assert f.mpg > BigDecimal.new(21.0, 2) && f.mpg < BigDecimal(30.0, 2), "mpg value is wrong"
       end
     end
   end
