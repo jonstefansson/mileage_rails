@@ -1,8 +1,6 @@
 class FillupsController < ApplicationController
   before_action :set_fillup, only: [:show, :edit, :update, :destroy]
 
-  helper FillupsHelper
-
   # GET /vehicles/1/fillups
   # GET /vehicles/1/fillups.json
   def index()
