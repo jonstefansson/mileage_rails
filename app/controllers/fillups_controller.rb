@@ -1,38 +1,38 @@
 class FillupsController < ApplicationController
   before_action :set_fillup, only: [:show, :edit, :update, :destroy]
+  before_action :set_vehicle
 
   # GET /vehicles/1/fillups
   # GET /vehicles/1/fillups.json
   def index()
     limit = params['limit'] ? params['limit'].to_i : 10
-    @fillups = Fillup.where('vehicle_id = ?', params['vehicle_id']).order('odometer DESC').limit(limit)
+    @fillups = Fillup.where('vehicle_id = ?', @vehicle.id).order('odometer DESC').limit(limit)
     calculate_mpgs(@fillups)
   end
 
-  # GET /fillups/1
-  # GET /fillups/1.json
+  # GET /vehicles/1/fillups/1
+  # GET /vehicles/1/fillups/1.json
   def show
   end
 
-  # GET /fillups/new
+  # GET /vehicles/1/fillups/new
   def new
-    @vehicles = Vehicle.all
     @fillup = Fillup.new
   end
 
-  # GET /fillups/1/edit
+  # GET /vehicles/1/fillups/1/edit
   def edit
-    @vehicles = Vehicle.all
   end
 
-  # POST /fillups
-  # POST /fillups.json
+  # POST /vehicles/1/fillups
+  # POST /vehicles/1/fillups.json
   def create
     @fillup = Fillup.new(fillup_params)
+    @fillup.vehicle = @vehicle
 
     respond_to do |format|
       if @fillup.save
-        format.html { redirect_to @fillup, notice: 'Fillup was successfully created.' }
+        format.html { redirect_to vehicle_fillup_path(@vehicle.id, @fillup), notice: 'Fillup was successfully created.' }
         format.json { render :show, status: :created, location: @fillup }
       else
         format.html { render :new }
@@ -41,12 +41,12 @@ class FillupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /fillups/1
-  # PATCH/PUT /fillups/1.json
+  # PATCH/PUT /vehicles/1/fillups/1
+  # PATCH/PUT /vehicles/1/fillups/1.json
   def update
     respond_to do |format|
       if @fillup.update(fillup_params)
-        format.html { redirect_to @fillup, notice: 'Fillup was successfully updated.' }
+        format.html { redirect_to vehicle_fillup_path(@vehicle.id, @fillup), notice: 'Fillup was successfully updated.' }
         format.json { render :show, status: :ok, location: @fillup }
       else
         format.html { render :edit }
@@ -55,12 +55,12 @@ class FillupsController < ApplicationController
     end
   end
 
-  # DELETE /fillups/1
-  # DELETE /fillups/1.json
+  # DELETE /vehicles/1/fillups/1
+  # DELETE /vehicles/1/fillups/1.json
   def destroy
     @fillup.destroy
     respond_to do |format|
-      format.html { redirect_to fillups_url, notice: 'Fillup was successfully destroyed.' }
+      format.html { redirect_to vehicle_fillups_url(@vehicle.id), notice: 'Fillup was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,12 +71,14 @@ class FillupsController < ApplicationController
       @fillup = Fillup.find(params[:id])
     end
 
+  def set_vehicle
+    @vehicle = Vehicle.find(params[:vehicle_id])
+  end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def fillup_params
       params.require(:fillup).permit(:vehicle_id, :odometer, :fill_date, :gallons)
     end
-
-  private
 
   def calculate_mpgs(fillups)
     fillups.inject() do |last_fillup, f|

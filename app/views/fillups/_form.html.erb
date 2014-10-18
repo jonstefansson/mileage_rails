@@ -1,4 +1,4 @@
-<%= form_for(@fillup) do |f| %>
+<%= form_for(@fillup, html: {role: 'form'}) do |f| %>
   <% if @fillup.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@fillup.errors.count, "error") %> prohibited this fillup from being saved:</h2>
@@ -10,24 +10,20 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :vehicle %><br>
-    <%= f.collection_select :vehicle_id, @vehicles, :id, :name, include_blank: true %>
-  </div>
-  <div class="field">
+  <%= hidden_field_tag 'vehicle_id', @vehicle.id %>
+  <div class="form-group">
     <%= f.label :odometer %><br>
     <%= f.number_field :odometer %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :fill_date %><br>
-    <%= f.date_select :fill_date %>
+    <%= f.date_field :fill_date %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :gallons %><br>
     <%= f.text_field :gallons %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button class: "btn btn-primary" %>
   </div>
 <% end %>

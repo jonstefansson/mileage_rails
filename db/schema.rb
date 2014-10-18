@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 20141016000500) do
   create_table "fillups", force: true do |t|
     t.integer  "odometer"
     t.date     "fill_date"
-    t.date     "index"
     t.decimal  "gallons",    precision: 5, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "vehicle_id"
   end
 
+  add_index "fillups", ["fill_date"], name: "index_fillups_on_fill_date"
   add_index "fillups", ["odometer", "vehicle_id"], name: "index_fillups_on_odometer_and_vehicle_id", unique: true
   add_index "fillups", ["vehicle_id"], name: "index_fillups_on_vehicle_id"
 

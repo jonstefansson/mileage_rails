@@ -1,6 +1,5 @@
-<h1>Editing fillup</h1>
+<h2>Editing fillup</h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @fillup %> |
-<%= link_to 'Back', fillups_path %>
+<%= link_to 'Cancel', vehicle_fillups_path(@fillup.vehicle) %>

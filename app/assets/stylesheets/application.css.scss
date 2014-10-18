@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.flash {
+  display: none;
+}
+
+.list-action-table {
+  width: 40%;
+}
+
+.list-action-label {
+  font-size: 120%;
+}

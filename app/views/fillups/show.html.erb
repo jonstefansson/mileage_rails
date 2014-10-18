@@ -15,5 +15,5 @@
   <%= @fillup.gallons %>
 </p>
 
-<%= link_to 'Edit', edit_fillup_path(@fillup) %> |
-<%= link_to 'Back', fillups_path %>
+<%= link_to 'Edit', edit_vehicle_fillup_path(@vehicle.id, @fillup), class: "btn btn-primary active", role: "button" %>
+<%= link_to 'Cancel', vehicle_fillups_path(@vehicle), class: "btn btn-link", role: "button" %>
